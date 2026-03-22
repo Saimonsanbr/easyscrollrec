@@ -1,0 +1,11 @@
+{
+    "name": "easyscrollrec",
+    "version": "0.1.0",
+    "dependencies": {
+        "@tauri-apps/api": "^2"
+    },
+    "scripts": {
+        "dev": "tauri dev",
+        "build": "tauri build"
+    }
+}

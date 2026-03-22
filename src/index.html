@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Easy ScrollRec</title>
+
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+    <!-- TELA: setup (dependências faltando) -->
+    <div id="screen-setup" class="screen hidden">
+        <div class="setup-icon">⚠️</div>
+        <h2>Dependências necessárias</h2>
+        <p>Easy ScrollRec precisa do <strong>ffmpeg</strong> instalado.</p>
+        <div class="code-block">
+            <code>brew install ffmpeg</code>
+            <button class="btn-copy" onclick="copyBrewCmd()">Copiar</button>
+        </div>
+        <p class="hint">Após instalar, clique em continuar.</p>
+        <button class="btn-primary" onclick="recheckDeps()">Já instalei →</button>
+    </div>
+
+    <!-- TELA: principal -->
+    <div id="screen-main" class="screen hidden">
+        <div class="app-header">
+            <div class="app-logo">
+                <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                    <rect width="28" height="28" rx="7" fill="url(#grad)" />
+                    <path d="M8 14 L14 8 L20 14 L14 20 Z" fill="white" opacity="0.9" />
+                    <defs>
+                        <linearGradient id="grad" x1="0" y1="0" x2="28" y2="28">
+                            <stop offset="0%" stop-color="#6B6BF5" />
+                            <stop offset="100%" stop-color="#4A4AE0" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+            <span class="app-name">Easy ScrollRec</span>
+        </div>
+
+        <div class="card">
+            <label class="field-label">URL da página</label>
+            <div class="input-row">
+                <input id="url-input" type="text" placeholder="https://exemplo.com" autocomplete="off"
+                    spellcheck="false" />
+            </div>
+
+            <div class="options-row">
+                <div class="option-group">
+                    <label class="field-label-sm">Velocidade</label>
+                    <div class="select-wrap">
+                        <select id="speed-select">
+                            <option value="300">Lenta</option>
+                            <option value="500" selected>Normal</option>
+                            <option value="800">Rápida</option>
+                            <option value="1200">Muito rápida</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="option-group">
+                    <label class="field-label-sm">Qualidade</label>
+                    <div class="select-wrap">
+                        <select id="fps-select">
+                            <option value="30">30 fps</option>
+                            <option value="60" selected>60 fps</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="output-row">
+                <label class="field-label-sm">Salvar como</label>
+                <div class="input-row output-input-row">
+                    <input id="output-input" type="text" placeholder="scroll.mp4" autocomplete="off" />
+                </div>
+            </div>
+        </div>
+
+        <button class="btn-record" id="btn-record" onclick="startRecord()">
+            <span class="btn-record-dot"></span>
+            Gravar
+        </button>
+    </div>
+
+    <!-- TELA: gravando -->
+    <div id="screen-recording" class="screen hidden">
+        <div class="recording-wrap">
+            <div class="spinner"></div>
+            <p class="recording-status" id="recording-status">Iniciando...</p>
+            <p class="recording-hint">Isso pode levar alguns segundos</p>
+        </div>
+    </div>
+
+    <!-- TELA: concluído -->
+    <div id="screen-done" class="screen hidden">
+        <div class="done-icon">✓</div>
+        <h2>Vídeo pronto!</h2>
+        <p class="done-path" id="done-path"></p>
+        <div class="done-actions">
+            <button class="btn-secondary" onclick="revealFile()">Mostrar no Finder</button>
+            <button class="btn-primary" onclick="goBack()">Gravar outro</button>
+        </div>
+    </div>
+
+    <!-- TELA: erro -->
+    <div id="screen-error" class="screen hidden">
+        <div class="error-icon">✕</div>
+        <h2>Algo deu errado</h2>
+        <p class="error-message" id="error-message"></p>
+        <button class="btn-primary" onclick="goBack()">Tentar novamente</button>
+    </div>
+
+    <script type="module" src="/main.js"></script>
+</body>
+
+</html>

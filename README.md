@@ -35,7 +35,7 @@ No browser extensions. No screen recording. No Python. Just a native app that ca
 
 ## Inspiration
 
-This project was inspired by [scrollrec](https://github.com/viktorkav/scrollrec) by Viktor Kavutar — a great idea for recording scroll videos of webpages.
+This project was inspired by [scrollrec](https://github.com/viktorkav/scrollrec) by Victor Vasconcelos (viktorkav) — a great idea for recording scroll videos of webpages.
 
 easyscrollrec takes a different approach: no Python, no Playwright, no headless browser abstractions. Instead it uses **easybrawto** (Crystal + CDP) to talk directly to the browser, and **ffmpeg** for video rendering — tools that feel more native to macOS and Linux, with no runtime dependencies to manage.
 
